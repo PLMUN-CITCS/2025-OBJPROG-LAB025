@@ -182,7 +182,6 @@ Only perform this if this is the first time you will setup your Git Environment
           }
       }
       ```
-      - Create another Person object named person2 using the default constructor (no arguments).
 
    8. Create Item Objects
       - Inside the main method, create three objects of the Item class named item1, item2, and item3, each with a different item name (e.g., "Laptop", "Smartphone", "Tablet").
