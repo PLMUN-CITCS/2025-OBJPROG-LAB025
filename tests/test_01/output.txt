@@ -1,3 +1,4 @@
-Integer value: 10
-Double value: 3.14
-String value: Hello!
+Item: Laptop
+Item: Smartphone
+Item: Tablet
+Total objects created: 3
