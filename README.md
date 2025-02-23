@@ -88,7 +88,10 @@ Only perform this if this is the first time you will setup your Git Environment
 
    **Desired Output:**
    ```txt
-   //Modify this
+   Item: Laptop
+   Item: Smartphone
+   Item: Tablet
+   Total objects created: 3
    ```
 
    **Notable Observations:**
@@ -177,7 +180,7 @@ Only perform this if this is the first time you will setup your Git Environment
       - In the same file (ItemDemo.java), outside the Item class, create the main method.
       ```Java
       public class ItemDemo {
-          public static void main(String args) {
+          public static void main(String[] args) {
               // Code will go here
           }
       }
