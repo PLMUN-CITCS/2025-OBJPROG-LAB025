@@ -1,7 +1,7 @@
-# **2025-OBJPROG-LAB024**
+# **2025-OBJPROG-LAB025**
 Week 05 - Methods in Java
 
-Laboratory # 24 - Week 05 - Guided Coding Exercise 3: Constructors and (Discussion on) Deconstructors
+Laboratory # 25 - Week 05 - Guided Coding Exercise 4: Class Methods and Class Variables (Static Members)
 
 ## **Instructions**
 
@@ -77,14 +77,14 @@ Only perform this if this is the first time you will setup your Git Environment
 
 ### **Step 3: Complete the Assignment**
 
-**Laboratory # 24 - Week 05 - Guided Coding Exercise 3: Constructors and (Discussion on) Deconstructors**
+**Laboratory # 25 - Week 05 - Guided Coding Exercise 4: Class Methods and Class Variables (Static Members)**
 
    **Objective:**
    - Understand and use access modifiers (public, private, protected).
    - Define methods and attributes within a class.
 
    **File Naming Convention:**
-   - `PersonDemo.java`
+   - `ItemDemo.java`
 
    **Desired Output:**
    ```txt
@@ -92,114 +92,125 @@ Only perform this if this is the first time you will setup your Git Environment
    ```
 
    **Notable Observations:**
-   - The Person class has two constructors: a parameterized constructor and a default constructor.
-   - When you create a Person object using new Person("Bob", 30), the parameterized constructor is called, and the object's name and age are initialized with the provided values.
-   - When you create a Person object using new Person(), the default constructor is called, and the object's name is set to "Unknown" and age to 0.
+   - The objectCount variable is shared by all instances of the Item class. Each time a new Item object is created, the objectCount is incremented, and this change is reflected across all objects.
+   - You can call the static method displayObjectCount() directly using the class name, without needing an object instance.
 
    **Java Programming Best Practices:**
-   - Provide both a default constructor and parameterized constructors for flexibility in creating objects.
-   - Use the this keyword inside constructors to refer to the object's instance variables.
-   - Keep constructors concise and focused on initializing attributes.
+   - Use static variables when you want to share data across all objects of a class.
+   - Use static methods to define utility functions or methods that don't operate on specific object instances.
+   - Use descriptive names for static variables and methods.
       
    **Step-by-Step Instructions:**
 
-   1. Create the BankAccount Class
-      - Create a new Java file named `PersonDemo.java`.
-      - Define a class called `Person`.
+   1. Create the Item Class
+      - Create a new Java file named `ItemDemo.java`.
+      - Define a class called `Item`.
       ```Java      
-      class Person {
+      class Item {
           // Code will go here
       }
       ```
             
-   2. Add Attributes with Access Modifiers
-      - Inside the Person class, declare two instance variables (attributes):
-         - name of type String
-         - age of type int
+   2. Add a Static Variable
+      - Inside the Item class, declare a static variable named objectCount of type int. Initialize it to 0.
+      - Use the static keyword to indicate that this variable belongs to the class itself, not to any specific object of the class.
       ```Java
-      class Person {
-          String name;
-          int age;
+      class Item {
+          static int objectCount = 0;
       }
       ```
 
-   3. Create a Parameterized Constructor
-      - Inside the Person class, create a constructor. This is a special method that has the same name as the class and is used to initialize the object's attributes when it's created.
-      - The constructor should take two parameters: a String for the name and an int for the age.
-      - Inside the constructor, use the this keyword to refer to the object's instance variables and assign the parameter values to them.
+   3. Add an Instance Variable
+      - Inside the Item class, declare an instance variable named itemName of type String.
       ```Java
-      class Person {
-          //... (attributes)...
+      class Item {
+          //... (static variable)...
+          String itemName;
+      }
+      ```
+
+   4. Create a Constructor
+      - Inside the Item class, create a constructor that takes a String parameter named itemName.
+      - Inside the constructor, initialize the itemName instance variable with the value of the itemName parameter.
+      - Increment the static objectCount variable by 1.
+      ```Java
+      class Item {
+          //... (variables)...
       
-          public Person(String name, int age) {
-              this.name = name;
-              this.age = age;
+          public Item(String itemName) {
+              this.itemName = itemName;
+              objectCount++;
           }
       }
       ```
 
-   4. Create a Default Constructor
-      - Inside the Person class, create another constructor, but this time with no parameters. This is called a default constructor.
-      - Inside the default constructor, initialize the name attribute to "Unknown" and the age attribute to 0.
-      ```Java
-      class Person {
-          //... (attributes and parameterized constructor)...
-      
-          public Person() {
-              this.name = "Unknown";
-              this.age = 0;
-          }
-      }
-      ```
-
-   5. Add a displayPerson Method
-      - Inside the Person class, create a method named displayPerson.
+   5. Add a Static Method
+      - Inside the Item class, create a static method named displayObjectCount.
       - This method should not return any value (void).
-      - Inside the displayPerson method, add a println statement to print the person's name and age in the format: "Name: [name], Age: [age]"
+      - Use the static keyword to indicate that this method belongs to the class.
+      - Inside the displayObjectCount method, add a println statement to print the value of the objectCount variable.
       ```Java
-      class Person {
-          //... (attributes and constructors)...
+      class Item {
+          //... (variables and constructor)...
       
-          public void displayPerson() {
-              System.out.println("Name: " + name + ", Age: " + age);
+          public static void displayObjectCount() {
+              System.out.println("Total objects created: " + objectCount);
           }
       }
       ```
 
-   6. Create the main Method
-      - In the same file (PersonDemo.java), outside the Person class, create the main method. This is where your program will start running.
+   6. Add an Instance Method
+      - Inside the Item class, create an instance method named displayItem.
+      - This method should not return any value (void).
+      - Inside the displayItem method, add a println statement to print the name of the item.
       ```Java
-      public class PersonDemo {
+      class Item {
+          //... (other methods)...
+      
+          public void displayItem() {
+              System.out.println("Item: " + itemName);
+          }
+      }
+      ```
+
+   7. Create the main Method
+      - In the same file (ItemDemo.java), outside the Item class, create the main method.
+      ```Java
+      public class ItemDemo {
           public static void main(String args) {
               // Code will go here
           }
       }
       ```
-
-   7. Create Person Objects
-      - Inside the main method, create an object of the Person class named person1. Use the parameterized constructor and provide the name "Bob" and age 30 as arguments.
-      ```Java
-      Person person1 = new Person("Bob", 30);
-      ```
       - Create another Person object named person2 using the default constructor (no arguments).
-      ```Java
-      Person person2 = new Person();
-      ```
 
-   8. Call the displayPerson Method
-      - In the main method, call the displayPerson() method on both person1 and person2 objects.
+   8. Create Item Objects
+      - Inside the main method, create three objects of the Item class named item1, item2, and item3, each with a different item name (e.g., "Laptop", "Smartphone", "Tablet").
       ```Java
-      person1.displayPerson();
-      person2.displayPerson();
+      Item item1 = new Item("Laptop");
+      Item item2 = new Item("Smartphone");
+      Item item3 = new Item("Tablet");
       ```
-
-   9. Compile and Run
-       - Save the file as `PersonDemo.java`.
-       - Compile the code using `javac PersonDemo.java` in your terminal or command prompt.
-       - Run the compiled code using `java PersonDemo`.
+      
+   9. Call the Instance and Static Methods
+      - In the main method, call the displayItem() method on each of the Item objects (item1, item2, item3).
+      ```Java
+      item1.displayItem();
+      item2.displayItem();
+      item3.displayItem();
+      ```
+      - Call the static displayObjectCount() method using the class name: Item.displayObjectCount();
+      ```Java
+      Item.displayObjectCount();
+      ```
+      
+   10. Compile and Run
+       - Save the file as `ItemDemo.java`.
+       - Compile the code using `javac ItemDemo.java` in your terminal or command prompt.
+       - Run the compiled code using `java ItemDemo`.
 
    **Conclusion**
-   This exercise demonstrated the use of constructors in Java. Constructors are special methods used to initialize objects when they are created. They allow you to set the initial values of an object's attributes, ensuring that the object is in a valid state when it's first used. Java also has automatic garbage collection, which means you don't need to worry about manually deallocating memory for objects. The JVM takes care of cleaning up unused objects, making memory management easier for developers.
+   This exercise introduced the concept of static members (class variables and class methods) in Java. Static members belong to the class itself, not to any specific object. They are shared among all instances of the class. By understanding static members, you can write more efficient and organized code, especially when dealing with data or behaviors that are common to all objects of a class.
 
 ### **Step 4: Push Changes to GitHub**
 Once you've completed your changes, follow these steps to upload your work to your GitHub repository.
@@ -223,7 +234,7 @@ Once you've completed your changes, follow these steps to upload your work to yo
    Write a meaningful commit message:
    
    ```bash
-   git commit -m "Submitting OBJPROG Week 05 - Laboratory # 24"
+   git commit -m "Submitting OBJPROG Week 05 - Laboratory # 25"
    ```
    
 4. Push your changes to GitHub:
